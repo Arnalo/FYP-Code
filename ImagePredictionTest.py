@@ -57,7 +57,6 @@ secPath = getDataFolder() + "\CustomCNN2.h5"
 transferPath = getDataFolder() + "\FinalTransferLearningModel.h5"
 
 direc = os.getcwd() + '\\images'
-#k49Path = getDataFolder() + "\\datasets\\K49\\"
 
 # Load pre-trained model and labels
 cnn1 = load_model(firstPath, custom_objects={'ShakeShake': ShakeShake})
@@ -277,10 +276,6 @@ def imageSelector():
         img = Image.open(imageFile)
         newImg = img.copy()
         
-        #resized = img.resize((screenWidth, screenHeight - 100), Image.ANTIALIAS)
-        
-        #selectedImage = ImageTk.PhotoImage(resized)
-        
         selectedImage = customtkinter.CTkImage(light_image = img, size = (screenWidth, screenHeight))
         
         # Convert image to openCV format
@@ -302,12 +297,15 @@ def imageSelector():
 
 ############################################################################################################################################
 
+# Create Select File button
 selectFile = customtkinter.CTkButton(app, text = 'Select an image', corner_radius = 15, hover_color = "#FF0000", command = imageSelector)
 selectFile.grid(padx = 50, pady = 30)
 
+# Create label where image will be placed
 imageLabel = customtkinter.CTkLabel(app, text = "Image will be shown here")
 imageLabel.grid(padx = 28, pady = 28)
 
+# Align the widgets based on the grid
 app.grid_columnconfigure(0, weight = 1)
 
 app.mainloop()
